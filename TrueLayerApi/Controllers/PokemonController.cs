@@ -20,7 +20,7 @@ namespace TrueLayerApi.Controllers
         }
 
         [HttpGet("{testWord}")]
-        public async Task<PokemonResponseDto> GetTranslationAsync(string testWord)
+        public async Task<IActionResult> GetTranslationAsync(string testWord)
         {
             if (string.IsNullOrEmpty(testWord)) return BadRequest();
             try

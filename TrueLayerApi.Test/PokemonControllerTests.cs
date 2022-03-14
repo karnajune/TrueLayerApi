@@ -25,15 +25,17 @@ namespace TrueLayerApi.Test
         } 
         
         [Fact]
-        public async Task GetTranslationAsync_OnSuccess_ReturnsSameTextTranslation()
+        public async Task GetTranslationAsync_OnSuccess_Returns200()
         {
             var testString = "Test";
             var pokemonServiceStub = new Mock<IPokemonService>();
 
             var controller = new PokemonController(pokemonServiceStub.Object);
 
-            var result = await controller.GetTranslationAsync(testString);
-            Assert.Equal(testString,result.Name);
+            var result = await controller.GetTranslationAsync(testString) as OkObjectResult;
+
+            Assert.NotNull(result);
+            Assert.Equal(200, result.StatusCode);
         }
     }
 }
